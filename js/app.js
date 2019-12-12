@@ -26,6 +26,10 @@ new Vue({
 		specialAttack: function() {
 			this.fight.unshift('PLAYER HITS MONSTER FOR ' + generateHit(20));
 			this.fight.unshift('MONSTER HITS PLAYER FOR ' + generateHit(15));
+		},
+		heal: function() {
+			this.fight.unshift('PLAYER HEALS HIMSELF FOR 10';
+			this.fight.unshift('MONSTER HITS PLAYER FOR ' + generateHit(15));
 		}
 	},
 	computed: {
