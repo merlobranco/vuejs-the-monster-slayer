@@ -22,6 +22,10 @@ new Vue({
 		attack: function() {
 			this.fight.unshift('PLAYER HITS MONSTER FOR ' + generateHit(15));
 			this.fight.unshift('MONSTER HITS PLAYER FOR ' + generateHit(15));
+		},
+		specialAttack: function() {
+			this.fight.unshift('PLAYER HITS MONSTER FOR ' + generateHit(20));
+			this.fight.unshift('MONSTER HITS PLAYER FOR ' + generateHit(15));
 		}
 	},
 	computed: {
