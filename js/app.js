@@ -1,5 +1,9 @@
 'use strict';
 
+var generateHit = function (n) {
+	return Math.floor(Math.random() * n);
+}
+
 new Vue({
 	el: '#app',
 	data: {
@@ -11,6 +15,9 @@ new Vue({
 	methods: {
 		startGame: function() {
 			this.controls = true;
+			this.fight.length = 0;
+			this.player = 100;
+			this.monster = 100;
 		}
 	},
 	computed: {
