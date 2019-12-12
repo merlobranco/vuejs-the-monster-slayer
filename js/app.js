@@ -20,16 +20,27 @@ new Vue({
 			this.monster = 100;
 		},
 		attack: function() {
-			this.fight.unshift('PLAYER HITS MONSTER FOR ' + generateHit(15));
-			this.fight.unshift('MONSTER HITS PLAYER FOR ' + generateHit(15));
+			let hit = generateHit(15);
+			this.player-= hit;
+			this.fight.unshift('PLAYER HITS MONSTER FOR ' + hit);
+			hit = generateHit(15);
+			this.monster-= hit;
+			this.fight.unshift('MONSTER HITS PLAYER FOR ' + hit);
 		},
 		specialAttack: function() {
-			this.fight.unshift('PLAYER HITS MONSTER FOR ' + generateHit(20));
-			this.fight.unshift('MONSTER HITS PLAYER FOR ' + generateHit(15));
+			let hit = generateHit(20);
+			this.player-= hit;
+			this.fight.unshift('PLAYER HITS MONSTER FOR ' + hit);
+			hit = generateHit(15);
+			this.monster-= hit;
+			this.fight.unshift('MONSTER HITS PLAYER FOR ' + hit);
 		},
 		heal: function() {
+			this.player+= 10;
 			this.fight.unshift('PLAYER HEALS HIMSELF FOR 10');
-			this.fight.unshift('MONSTER HITS PLAYER FOR ' + generateHit(15));
+			let hit = generateHit(15);
+			this.monster-= hit;
+			this.fight.unshift('MONSTER HITS PLAYER FOR ' + hit);
 		}
 	},
 	computed: {
