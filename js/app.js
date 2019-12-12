@@ -1,5 +1,13 @@
 'use strict';
 
 new Vue({
-	el: '#app'
+	el: '#app',
+	data: {
+		controls: false
+	},
+	methods: {
+		startGame: function() {
+			this.controls = true;
+		}
+	}
 });
