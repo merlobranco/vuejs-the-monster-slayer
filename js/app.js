@@ -1,22 +1,5 @@
 'use strict';
 
-var generateHit = function (n) {
-	return Math.floor(Math.random() * n);
-}
-
-var checkWinner = function (player, monster) {
-	if (!player) {
-		window.alert('Sorry. Monter won this epic battle!!!');
-		return true;
-	}
-	if (!monster) {
-		window.alert('You win this epic battle!!!');
-		return true;
-	}
-	return false;
-}
-
-
 new Vue({
 	el: '#app',
 	data: {
@@ -37,34 +20,45 @@ new Vue({
 		attack: function() {
 			if (this.ended)
 				return;
-			let hit = generateHit(15);
+			let hit = this.generateHit(3, 10);
 			this.monster-= hit;
 			this.fight.unshift({a: hit});
-			hit = generateHit(15);
-			this.player-= hit;
-			this.fight.unshift(hit);
-			this.ended = checkWinner(this.player > 0, this.monster > 0);
+			this.monsterAttack();
 		},
 		specialAttack: function() {
 			if (this.ended)
 				return;
-			let hit = generateHit(20);
+			let hit = this.generateHit(10, 20);
 			this.monster-= hit;
 			this.fight.unshift({s: hit});
-			hit = generateHit(15);
-			this.player-= hit;
-			this.fight.unshift(hit);
-			this.ended = checkWinner(this.player > 0, this.monster > 0);
+			this.monsterAttack();
 		},
 		heal: function() {
 			if (this.ended)
 				return;
 			this.player+= 10;
 			this.fight.unshift({h: 10});
-			let hit = generateHit(15);
+			this.monsterAttack();
+		},
+		monsterAttack: function() {
+			let hit = this.generateHit(5, 12);
 			this.player-= hit;
 			this.fight.unshift(hit);
-			this.ended = checkWinner(this.player > 0, this.monster > 0);
+			this.ended = this.checkWinner(this.player > 0, this.monster > 0);
+		},
+		generateHit: function (min, max) {
+			return Math.max(Math.floor(Math.random() * max) + 1, min);
+		},
+		checkWinner: function (player, monster) {
+			if (!player) {
+				window.alert('Sorry. Monter won this epic battle!!!');
+				return true;
+			}
+			if (!monster) {
+				window.alert('You win this epic battle!!!');
+				return true;
+			}
+			return false;
 		}
 	},
 	computed: {
