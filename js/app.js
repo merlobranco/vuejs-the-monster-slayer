@@ -39,10 +39,10 @@ new Vue({
 				return;
 			let hit = generateHit(15);
 			this.monster-= hit;
-			this.fight.unshift('PLAYER HITS MONSTER FOR ' + hit);
+			this.fight.unshift({a: hit});
 			hit = generateHit(15);
 			this.player-= hit;
-			this.fight.unshift('MONSTER HITS PLAYER FOR ' + hit);
+			this.fight.unshift(hit);
 			this.ended = checkWinner(this.player > 0, this.monster > 0);
 		},
 		specialAttack: function() {
@@ -50,20 +50,20 @@ new Vue({
 				return;
 			let hit = generateHit(20);
 			this.monster-= hit;
-			this.fight.unshift('PLAYER HITS MONSTER FOR ' + hit);
+			this.fight.unshift({s: hit});
 			hit = generateHit(15);
 			this.player-= hit;
-			this.fight.unshift('MONSTER HITS PLAYER FOR ' + hit);
+			this.fight.unshift(hit);
 			this.ended = checkWinner(this.player > 0, this.monster > 0);
 		},
 		heal: function() {
 			if (this.ended)
 				return;
 			this.player+= 10;
-			this.fight.unshift('PLAYER HEALS HIMSELF FOR 10');
+			this.fight.unshift({h: 10});
 			let hit = generateHit(15);
 			this.player-= hit;
-			this.fight.unshift('MONSTER HITS PLAYER FOR ' + hit);
+			this.fight.unshift(hit);
 			this.ended = checkWinner(this.player > 0, this.monster > 0);
 		}
 	},

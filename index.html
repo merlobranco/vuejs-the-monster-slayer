@@ -42,7 +42,13 @@
                 <div class="small-12 columns">
                     <ul>
                         <li v-for="(action, index) in fight" :class="[{'player-turn': index % 2 !== 0}, {'monster-turn': index % 2 === 0}]">
-                            {{ action }}
+                            <template v-if="index % 2 === 0"><span>MONSTER HITS PLAYER FOR {{ action }}</span></template>
+                            <template v-else>
+                                <template v-for="(value, key) in action">
+                                    <span v-if="key==='h'">PLAYER HEALS HIMSELF FOR {{ value }}</span>
+                                    <span v-else>PLAYER HITS MONSTER FOR {{ value }}</span>
+                                </template>
+                            </template>
                         </li>
                     </ul>
                 </div>
