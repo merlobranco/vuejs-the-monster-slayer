@@ -38,10 +38,11 @@
                     <button id="give-up" @click="controls = false">GIVE UP</button>
                 </div>
             </section>
-            <section class="row log">
+            <section v-show="controls" class="row log">
                 <div class="small-12 columns">
                     <ul>
-                        <li>
+                        <li v-for="action in fight">
+                            {{ action }}
                         </li>
                     </ul>
                 </div>
