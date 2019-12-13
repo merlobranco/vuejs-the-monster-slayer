@@ -63,6 +63,7 @@ new Vue({
 			this.fight.unshift('PLAYER HEALS HIMSELF FOR 10');
 			let hit = generateHit(15);
 			this.player-= hit;
+			this.fight.unshift('MONSTER HITS PLAYER FOR ' + hit);
 			this.ended = checkWinner(this.player > 0, this.monster > 0);
 		}
 	},
