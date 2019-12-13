@@ -38,10 +38,10 @@
                     <button id="give-up" @click="controls = false">GIVE UP</button>
                 </div>
             </section>
-            <section v-show="controls" class="row log">
+            <section v-show="controls && fight.length" class="row log">
                 <div class="small-12 columns">
                     <ul>
-                        <li v-for="action in fight">
+                        <li v-for="(action, index) in fight" :class="[{'player-turn': index % 2 !== 0}, {'monster-turn': index % 2 === 0}]">
                             {{ action }}
                         </li>
                     </ul>
